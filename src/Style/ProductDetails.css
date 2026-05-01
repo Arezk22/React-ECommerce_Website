@@ -1,0 +1,29 @@
+.product-details-container {
+  animation: fadeIn 0.8s ease-in;
+}
+
+.main-img-holder {
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.main-img-holder img {
+  max-height: 450px;
+  object-fit: contain;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.text-warning {
+  color: #ffc107 !important; /* لون النجوم الذهبي */
+}

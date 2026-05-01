@@ -1,0 +1,78 @@
+/* Container styling */
+.product-card {
+  background-color: transparent !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Image scaling and animation */
+.img-container {
+  background-color: #f8f9fa;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+}
+
+.product-img {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+/* Hover Animation: Image zooms and Card lifts */
+.product-card:hover .product-img {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Badge Positioning */
+.card-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 10;
+}
+
+/* Typography */
+.product-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.product-price {
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.product-desc {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Button Styling */
+.add-to-cart-btn {
+  border-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+  background-color: #000 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Star colors to match the green in your image */
+.text-success {
+  color: #28a745 !important;
+  font-size: 0.8rem;
+  margin-right: 2px;
+}
