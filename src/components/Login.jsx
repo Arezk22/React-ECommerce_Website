@@ -32,28 +32,34 @@ const RegisterForm = () => {
     // Regex لليوزر نيم (يمنع المسافات ويقبل أرقام وحروف)
     const userNameRegex = /^\S*$/;
 
-    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.name.trim())
+      newErrors.name = lang === "ar" ? "يجب ادخال الاسم" : "Name required";
 
     if (!formData.email) {
-      newErrors.email = "Email is required";
+      newErrors.email =
+        lang === "ar" ? "يجب ادخال الايميل" : "Email is required";
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+      newErrors.email = lang === "ar" ? "" : "Invalid email format";
     }
 
     if (!formData.userName) {
-      newErrors.userName = "Username is required";
+      newErrors.userName =
+        lang === "ar" ? "اسم المستخدم مطلوب" : "Username is required";
     } else if (!userNameRegex.test(formData.userName)) {
-      newErrors.userName = "Username cannot contain spaces";
+      newErrors.userName =
+        lang === "ar" ? "" : "Username cannot contain spaces";
     }
 
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password =
+        lang === "ar" ? "كلمة السر مطلوبه" : "Password is required";
     } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
+      newErrors.password =
+        lang === "ar" ? "" : "Password must be at least 8 characters";
     }
 
     if (formData.confirmPassword !== formData.password) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = lang === "ar" ? "" : "Passwords do not match";
     }
 
     return newErrors;
@@ -85,7 +91,9 @@ const RegisterForm = () => {
                 <Form.Control
                   type="text"
                   name="name"
-                  placeholder="Enter your full name"
+                  placeholder={
+                    lang === "ar" ? "ادخل الاسم كاملا" : "Enter your full name"
+                  }
                   value={formData.name}
                   onChange={handleChange}
                   isInvalid={!!errors.name}
@@ -103,7 +111,7 @@ const RegisterForm = () => {
                 <Form.Control
                   type="email"
                   name="email"
-                  placeholder="example@mail.com"
+                  placeholder="example@gmail.com"
                   value={formData.email}
                   onChange={handleChange}
                   isInvalid={!!errors.email}
@@ -139,7 +147,11 @@ const RegisterForm = () => {
                 <Form.Control
                   type="password"
                   name="password"
-                  placeholder="Min 8 characters"
+                  placeholder={
+                    lang === "ar"
+                      ? "يجب الا تقل كلمه المرور عن 8 حروف"
+                      : "Min 8 characters"
+                  }
                   value={formData.password}
                   onChange={handleChange}
                   isInvalid={!!errors.password}
@@ -157,7 +169,9 @@ const RegisterForm = () => {
                 <Form.Control
                   type="password"
                   name="confirmPassword"
-                  placeholder="Repeat your password"
+                  placeholder={
+                    lang === "ar" ? "كرر كلمه المرور" : "Repeat your password"
+                  }
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   isInvalid={!!errors.confirmPassword}
@@ -168,7 +182,7 @@ const RegisterForm = () => {
               </Form.Group>
 
               <Button variant="primary" type="submit" className="w-100 py-2">
-                {lang === "ar" ? "دخول" : "Register"}
+                {lang === "ar" ? "تسجيل دخول" : "Register"}
               </Button>
             </Form>
           </Card>
