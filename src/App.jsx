@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import { LanguageProvider } from "./context/LanguageContext";
 
 // Lazy load components OUTSIDE the function
+//Add Code Splitting
 const Header = lazy(() => import("./components/Header"));
 const ProductsList = lazy(() => import("./components/ProductsList"));
 const ProductDetails = lazy(() => import("./components/ProductDetails"));
