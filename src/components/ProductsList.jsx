@@ -3,10 +3,12 @@ import axiosInstance from "../apis/Config";
 import ProductCart from "./ProductCart";
 import "../Style/ProductsList.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useContext } from "react";
+import { LanguageContext } from "../context/LanguageContext";
 
 function ProductsList() {
+  const { lang } = useContext(LanguageContext);
   const PRODUCTS_PER_PAGE = 12;
-
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
@@ -16,13 +18,17 @@ function ProductsList() {
     const skip = (currentPage - 1) * PRODUCTS_PER_PAGE;
 
     setIsLoading(true);
+    console.log("Fetching products from API..."); // Debug log
     axiosInstance
       .get(`/products?limit=${PRODUCTS_PER_PAGE}&skip=${skip}`)
       .then((res) => {
+        console.log("Products loaded successfully:", res.data); // Debug log
         setProducts(res.data.products);
         setTotalProducts(res.data.total);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.error("Error fetching products:", err.message, err.response); // Better error logging
+      })
       .finally(() => setIsLoading(false));
   }, [currentPage]);
 
@@ -76,7 +82,7 @@ function ProductsList() {
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
               >
-                Previous
+                {lang === "ar" ? "السابق" : "Previous"}
               </button>
             </li>
 
@@ -90,7 +96,7 @@ function ProductsList() {
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
               >
-                Next
+                {lang === "ar" ? "التالي" : "Next"}
               </button>
             </li>
           </ul>

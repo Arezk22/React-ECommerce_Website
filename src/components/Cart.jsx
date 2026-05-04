@@ -8,13 +8,17 @@ import {
   removeFromCart,
   deleteFromCart,
 } from "../store/slices/CartSlice";
+import { useContext } from "react";
+import { LanguageContext } from "../context/LanguageContext";
+// import { useCart } from "../context/CartContext.jsx";
 // import { useCart } from "../context/CartContext";
 
 const Cart = () => {
+  const { lang } = useContext(LanguageContext);
   // سنحتاج لإضافة هذه الوظائف في الـ Context
   // const { cartItems, addToCart, removeFromCart, deleteFromCart } = useCart();
 
-  const cartItems = useSelector((state) => state.counter.items);
+  const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
   const totalPrice = cartItems.reduce(
@@ -25,22 +29,22 @@ const Cart = () => {
   if (cartItems.length === 0) {
     return (
       <Container className="mt-5 text-center">
-        <h2> cart is empty !</h2>
+        <h2> {lang === "ar" ? "السلة فارغة!" : "Cart is empty!"} </h2>
       </Container>
     );
   }
 
   return (
     <Container className="mt-5">
-      <h2 className="mb-4">Cart</h2>
+      <h2 className="mb-4"> {lang === "ar" ? "السلة" : "Cart"} </h2>
       <Table responsive="md" hover>
         <thead className="table-dark">
           <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Delete</th>
+            <th>{lang === "ar" ? "المنتج" : "Product"}</th>
+            <th>{lang === "ar" ? "السعر" : "Price"}</th>
+            <th>{lang === "ar" ? "الكمية" : "Quantity"}</th>
+            <th>{lang === "ar" ? "المجموع" : "Total"}</th>
+            <th>{lang === "ar" ? "حذف" : "Delete"}</th>
           </tr>
         </thead>
         <tbody>
@@ -93,11 +97,11 @@ const Cart = () => {
       </Table>
       <div className="d-flex justify-content-between align-items-center mt-4 p-3 bg-light rounded">
         <h4>
-          Total Price:{" "}
+          {lang === "ar" ? "السعر الإجمالي" : "Total Price"}:{" "}
           <span className="text-success">${totalPrice.toFixed(2)}</span>
         </h4>
         <Button variant="success" size="lg">
-          Complete Purchase
+          {lang === "ar" ? "إكمال الشراء" : "Complete Purchase"}
         </Button>
       </div>
     </Container>

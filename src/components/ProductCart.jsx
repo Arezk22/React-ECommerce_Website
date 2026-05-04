@@ -7,12 +7,15 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../store/slices/CartSlice";
+import { useContext } from "react";
+import { LanguageContext } from "../context/LanguageContext";
 // import { useCart } from "../context/CartContext.jsx";
 
 const ProductCart = ({ product }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { lang } = useContext(LanguageContext);
   // const { addToCart } = useCart();
 
   return (
@@ -22,11 +25,11 @@ const ProductCart = ({ product }) => {
         <div className="card-badge">
           {product.stock > 0 ? (
             <Badge pill bg="success" className="px-3 py-2">
-              In stock
+              {lang === "ar" ? "في المخزن" : "In stock"}
             </Badge>
           ) : (
             <Badge pill bg="danger" className="px-3 py-2">
-              Out of stock
+              {lang === "ar" ? "غير متاح" : "Out of stock"}
             </Badge>
           )}
         </div>
@@ -73,7 +76,7 @@ const ProductCart = ({ product }) => {
             // onClick={() => addToCart(product)}
             onClick={() => dispatch(addToCart(product))}
           >
-            Add to Cart
+            {lang === "ar" ? "أضف إلى السلة" : "Add to Cart"}
           </Button>
         </Card.Body>
       </Card>

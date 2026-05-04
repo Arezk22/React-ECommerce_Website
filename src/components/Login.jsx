@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Card, Row, Col } from "react-bootstrap";
+import { useContext } from "react";
+import { LanguageContext } from "../context/LanguageContext";
 
 const RegisterForm = () => {
+  const { lang } = useContext(LanguageContext);
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    userName: "",
-    password: "",
-    confirmPassword: "",
+    [lang === "ar" ? "الاسم" : "name"]: "",
+    [lang === "ar" ? "البريد الإلكتروني" : "email"]: "",
+    [lang === "ar" ? "اسم المستخدم" : "userName"]: "",
+    [lang === "ar" ? "كلمة المرور" : "password"]: "",
+    [lang === "ar" ? "تأكيد كلمة المرور" : "confirmPassword"]: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -71,11 +75,13 @@ const RegisterForm = () => {
       <Row className="justify-content-center">
         <Col md={6}>
           <Card className="shadow-sm p-4">
-            <h3 className="text-center mb-4">Create Account</h3>
+            <h3 className="text-center mb-4">
+              {lang === "ar" ? "إنشاء حساب" : "Create Account"}
+            </h3>
             <Form onSubmit={handleSubmit}>
               {/* Name */}
               <Form.Group className="mb-3">
-                <Form.Label>Name</Form.Label>
+                <Form.Label> {lang === "ar" ? "الاسم" : "Name "}</Form.Label>
                 <Form.Control
                   type="text"
                   name="name"
@@ -91,7 +97,9 @@ const RegisterForm = () => {
 
               {/* Email */}
               <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>
+                  {lang === "ar" ? "البريد الإلكتروني" : "Email"}
+                </Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
@@ -107,7 +115,9 @@ const RegisterForm = () => {
 
               {/* Username */}
               <Form.Group className="mb-3">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>
+                  {lang === "ar" ? "اسم المستخدم" : "Username"}
+                </Form.Label>
                 <Form.Control
                   type="text"
                   name="userName"
@@ -123,7 +133,9 @@ const RegisterForm = () => {
 
               {/* Password */}
               <Form.Group className="mb-3">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>
+                  {lang === "ar" ? "كلمة المرور" : "Password"}
+                </Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
@@ -139,7 +151,9 @@ const RegisterForm = () => {
 
               {/* Confirm Password */}
               <Form.Group className="mb-4">
-                <Form.Label>Confirm Password</Form.Label>
+                <Form.Label>
+                  {lang === "ar" ? "تأكيد كلمة المرور" : "Confirm Password"}
+                </Form.Label>
                 <Form.Control
                   type="password"
                   name="confirmPassword"
@@ -154,7 +168,7 @@ const RegisterForm = () => {
               </Form.Group>
 
               <Button variant="primary" type="submit" className="w-100 py-2">
-                Register
+                {lang === "ar" ? "دخول" : "Register"}
               </Button>
             </Form>
           </Card>
